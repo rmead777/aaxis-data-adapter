@@ -4,7 +4,7 @@ import {
   FileSearch, Package, Activity, Cpu, GitMerge, Layers, Box, Shield,
   Cloud, FileCode, Database, Network, BarChart3, TrendingUp, Zap, Lock,
   Play, CheckCircle2, AlertCircle, Sparkles, ChevronRight, ChevronLeft, Building, Users,
-  Brain, Globe, Rocket, Target, DollarSign, ArrowUpRight
+  Brain, Globe, Rocket, Target, DollarSign, ArrowUpRight, ArrowRight
 } from 'lucide-react';
 
 interface SourceType {
@@ -69,7 +69,6 @@ interface Advantage {
 const DataAdapterPitch: React.FC = () => {
   const [activePhase, setActivePhase] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [showMetrics, setShowMetrics] = useState(false);
 
   useEffect(() => {
     if (isPlaying) {
@@ -249,6 +248,42 @@ const DataAdapterPitch: React.FC = () => {
             </button>
           </div>
 
+          {/* AI Agentic Solutions Banner */}
+          <div className="mb-8 p-6 rounded-2xl bg-gradient-to-r from-indigo-900/40 via-purple-900/40 to-blue-900/40 border border-purple-500/30 backdrop-blur-xl">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-blue-600 p-2.5 flex-shrink-0">
+                <Brain className="w-full h-full text-white" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
+                  <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                    Powering AI Agentic Solutions & Intelligent Automation
+                  </span>
+                  <Sparkles className="w-5 h-5 text-purple-400" />
+                </h3>
+                <p className="text-slate-300 leading-relaxed mb-3">
+                  Our standardized intelligence layer creates a <span className="font-semibold text-blue-400">unified semantic foundation</span> that enables 
+                  AI agents to understand, reason, and act across all your enterprise data. By normalizing disparate sources into a consistent, 
+                  context-aware data model, we eliminate the integration complexity that prevents autonomous AI systems from operating effectively.
+                </p>
+                <div className="grid grid-cols-3 gap-4 text-sm">
+                  <div className="flex items-center gap-2 text-emerald-400">
+                    <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
+                    <span>AI-native semantic understanding</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-blue-400">
+                    <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
+                    <span>Autonomous agent orchestration</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-purple-400">
+                    <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
+                    <span>Context-aware decision making</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Key Metrics Bar */}
           <div className="grid grid-cols-4 gap-4 mb-8">
             {businessOutcomes.map((outcome, i) => (
@@ -327,20 +362,20 @@ const DataAdapterPitch: React.FC = () => {
           <div className="col-span-12 md:col-span-3 lg:col-span-3">
             <div className="sticky top-8">
               <h3 className="text-lg font-semibold mb-4 text-slate-300">Data Sources</h3>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {sourceSystem.types.map((system, i) => (
                   <div
                     key={i}
-                    className={`relative overflow-hidden rounded-xl bg-gradient-to-r ${system.color} p-4 transform transition-all ${
+                    className={`relative overflow-hidden rounded-xl bg-gradient-to-r ${system.color} p-5 transform transition-all min-h-[100px] flex flex-col justify-center ${
                       activePhase === 0 ? 'scale-105 shadow-2xl' : 'opacity-80'
                     }`}
                   >
                     <div className="relative z-10 text-white">
                       <div className="flex items-center gap-3 mb-2">
-                        <system.icon className="w-5 h-5" />
-                        <span className="font-semibold">{system.name}</span>
+                        <system.icon className="w-6 h-6 flex-shrink-0" />
+                        <span className="font-semibold text-base">{system.name}</span>
                       </div>
-                      <div className="text-xs opacity-90">{system.examples}</div>
+                      <div className="text-xs opacity-90 leading-relaxed">{system.examples}</div>
                     </div>
                     {activePhase === 0 && (
                       <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
@@ -351,8 +386,16 @@ const DataAdapterPitch: React.FC = () => {
             </div>
           </div>
 
+          {/* Arrow: Data Sources → Pipeline */}
+          <div className="hidden md:flex col-span-12 md:col-span-1 lg:col-span-1 items-start justify-center pt-8">
+            <div className="flex flex-col items-center gap-2">
+              <ArrowRight className="w-8 h-8 text-blue-400 animate-pulse" />
+              <div className="text-xs text-slate-500 writing-mode-vertical transform -rotate-0">Flow</div>
+            </div>
+          </div>
+
           {/* Processing Pipeline - Center */}
-          <div className="col-span-12 md:col-span-6 lg:col-span-6">
+          <div className="col-span-12 md:col-span-4 lg:col-span-4">
             <h3 className="text-lg font-semibold mb-4 text-slate-300 text-center">Processing Pipeline</h3>
 
             {/* Pipeline indicators moved to the full-width strip above */}
@@ -426,36 +469,6 @@ const DataAdapterPitch: React.FC = () => {
               })()}
             </div>
 
-            {/* View ROI Metrics Button - moved above the metrics */}
-            <div className="mt-8 text-center">
-              <button
-                onClick={() => setShowMetrics(!showMetrics)}
-                className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl font-semibold hover:shadow-xl transition-all flex items-center justify-center gap-2 mx-auto"
-              >
-                {showMetrics ? 'Hide ROI Metrics' : 'View ROI Metrics'}
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
-
-            {/* ROI Metrics Section - widened cards */}
-            {showMetrics && (
-              <div className="mt-6 grid grid-cols-2 lg:grid-cols-4 gap-6">
-                {[
-                  { label: 'Integration Time', value: '2 weeks', change: 'vs 6 months traditional', color: 'from-blue-500 to-cyan-500' },
-                  { label: 'Data Quality', value: '99.9%', change: 'accuracy guaranteed', color: 'from-emerald-500 to-green-500' },
-                  { label: 'Cost Reduction', value: '60%', change: 'lower TCO', color: 'from-purple-500 to-pink-500' },
-                  { label: 'Time to Value', value: '24 hrs', change: 'first insights', color: 'from-orange-500 to-amber-500' },
-                ].map((metric, i) => (
-                  <div key={i} className="relative overflow-hidden rounded-xl bg-slate-800/50 backdrop-blur-xl border border-white/10 p-8">
-                    <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${metric.color}`}></div>
-                    <div className="text-4xl font-bold mb-3">{metric.value}</div>
-                    <div className="text-base text-slate-300 mb-2 font-medium">{metric.label}</div>
-                    <div className="text-sm text-slate-500">{metric.change}</div>
-                  </div>
-                ))}
-              </div>
-            )}
-
             {/* Navigation Hint */}
             <div className="mt-8 text-center">
               <p className="text-xs text-slate-500 flex items-center justify-center gap-2">
@@ -465,57 +478,65 @@ const DataAdapterPitch: React.FC = () => {
             </div>
           </div>
 
+          {/* Arrow: Pipeline → Output */}
+          <div className="hidden md:flex col-span-12 md:col-span-1 lg:col-span-1 items-start justify-center pt-8">
+            <div className="flex flex-col items-center gap-2">
+              <ArrowRight className="w-8 h-8 text-emerald-400 animate-pulse" />
+              <div className="text-xs text-slate-500 writing-mode-vertical transform -rotate-0">Output</div>
+            </div>
+          </div>
+
           {/* Output/Results - Right Panel */}
-          <div className="col-span-12 md:col-span-3">
+          <div className="col-span-12 md:col-span-3 lg:col-span-3">
             <div className="sticky top-8">
               <h3 className="text-lg font-semibold mb-4 text-slate-300">Unified Output</h3>
 
               {/* Output Cards */}
-              <div className="space-y-3">
-                <div className={`rounded-xl bg-gradient-to-r from-emerald-600/20 to-teal-600/20 backdrop-blur-xl border border-emerald-500/30 p-4 transform transition-all ${
+              <div className="space-y-4">
+                <div className={`rounded-xl bg-gradient-to-r from-emerald-600/20 to-teal-600/20 backdrop-blur-xl border border-emerald-500/30 p-5 transform transition-all min-h-[100px] flex flex-col justify-center ${
                   activePhase === 7 ? 'scale-105 shadow-2xl shadow-emerald-500/20' : ''
                 }`}>
                   <div className="flex items-center gap-3 mb-2">
-                    <Database className="w-5 h-5 text-emerald-400" />
-                    <span className="font-semibold text-emerald-300">Unified Data Model</span>
+                    <Database className="w-6 h-6 text-emerald-400 flex-shrink-0" />
+                    <span className="font-semibold text-base text-emerald-300">Unified Data Model</span>
                   </div>
-                  <div className="text-xs text-slate-400">
+                  <div className="text-xs text-slate-400 leading-relaxed">
                     Standardized, validated, ready for analytics
                   </div>
                 </div>
 
-                <div className={`rounded-xl bg-gradient-to-r from-blue-600/20 to-cyan-600/20 backdrop-blur-xl border border-blue-500/30 p-4 transform transition-all ${
+                <div className={`rounded-xl bg-gradient-to-r from-blue-600/20 to-cyan-600/20 backdrop-blur-xl border border-blue-500/30 p-5 transform transition-all min-h-[100px] flex flex-col justify-center ${
                   activePhase === 7 ? 'scale-105 shadow-2xl shadow-blue-500/20' : ''
                 }`}>
                   <div className="flex items-center gap-3 mb-2">
-                    <Network className="w-5 h-5 text-blue-400" />
-                    <span className="font-semibold text-blue-300">Knowledge Graph</span>
+                    <Network className="w-6 h-6 text-blue-400 flex-shrink-0" />
+                    <span className="font-semibold text-base text-blue-300">Knowledge Graph</span>
                   </div>
-                  <div className="text-xs text-slate-400">
+                  <div className="text-xs text-slate-400 leading-relaxed">
                     Connected insights across all sources
                   </div>
                 </div>
 
-                <div className={`rounded-xl bg-gradient-to-r from-purple-600/20 to-pink-600/20 backdrop-blur-xl border border-purple-500/30 p-4 transform transition-all ${
+                <div className={`rounded-xl bg-gradient-to-r from-purple-600/20 to-pink-600/20 backdrop-blur-xl border border-purple-500/30 p-5 transform transition-all min-h-[100px] flex flex-col justify-center ${
                   activePhase === 7 ? 'scale-105 shadow-2xl shadow-purple-500/20' : ''
                 }`}>
                   <div className="flex items-center gap-3 mb-2">
-                    <BarChart3 className="w-5 h-5 text-purple-400" />
-                    <span className="font-semibold text-purple-300">AI-Ready Dataset</span>
+                    <BarChart3 className="w-6 h-6 text-purple-400 flex-shrink-0" />
+                    <span className="font-semibold text-base text-purple-300">AI-Ready Dataset</span>
                   </div>
-                  <div className="text-xs text-slate-400">
+                  <div className="text-xs text-slate-400 leading-relaxed">
                     Optimized for ML/AI applications
                   </div>
                 </div>
 
-                <div className={`rounded-xl bg-gradient-to-r from-amber-600/20 to-orange-600/20 backdrop-blur-xl border border-amber-500/30 p-4 transform transition-all ${
+                <div className={`rounded-xl bg-gradient-to-r from-amber-600/20 to-orange-600/20 backdrop-blur-xl border border-amber-500/30 p-5 transform transition-all min-h-[100px] flex flex-col justify-center ${
                   activePhase === 7 ? 'scale-105 shadow-2xl shadow-amber-500/20' : ''
                 }`}>
                   <div className="flex items-center gap-3 mb-2">
-                    <Zap className="w-5 h-5 text-amber-400" />
-                    <span className="font-semibold text-amber-300">Real-time Pipeline</span>
+                    <Zap className="w-6 h-6 text-amber-400 flex-shrink-0" />
+                    <span className="font-semibold text-base text-amber-300">Real-time Pipeline</span>
                   </div>
-                  <div className="text-xs text-slate-400">
+                  <div className="text-xs text-slate-400 leading-relaxed">
                     Live data streaming and processing
                   </div>
                 </div>
