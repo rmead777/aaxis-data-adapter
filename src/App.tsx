@@ -574,7 +574,7 @@ const AAXISvDataXInline: React.FC = () => {
       },
       {
         category: 'Time to Value',
-        aaxis: { score: 88, features: ['2-week deployment', 'Self-learning', 'Zero-code setup'] },
+        aaxis: { score: 88, features: ['6-week deployment', 'Self-learning', 'Zero-code setup'] },
         datax: { score: 45, features: ['6-month deployment', 'Manual config', 'Heavy coding'] },
         differentiator: 'AI-accelerated vs traditional implementation'
       },
@@ -604,9 +604,9 @@ const AAXISvDataXInline: React.FC = () => {
       {
         icon: Rocket,
         title: 'Speed to Market',
-        aaxis: '2-week average deployment',
+        aaxis: '6-week average deployment',
         datax: '6-month typical implementation',
-        impact: '12x faster time to first insight'
+        impact: '4x faster time to first insight'
       },
       {
         icon: Target,
@@ -791,7 +791,7 @@ const AAXISvDataXInline: React.FC = () => {
             </h2>
             <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
               Join leading enterprises in the AI-powered data revolution. 
-              Deploy in 2 weeks, not 6 months.
+              Deploy in 6 weeks, not 6 months.
             </p>
             <div className="flex gap-4 justify-center">
               <button className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl font-bold text-lg hover:shadow-2xl transition-all">
