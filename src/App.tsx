@@ -51,14 +51,6 @@ interface Differentiator {
   impact: string;
 }
 
-interface ClientResult {
-  client: string;
-  metric: string;
-  aaxis: string;
-  datax: string;
-  improvement: string;
-}
-
 interface Advantage {
   icon: React.ComponentType<{ className?: string }>;
   label: string;
@@ -551,7 +543,7 @@ const DataAdapterPitch: React.FC = () => {
 
 // AAXISvDataX Component (inline for tab)
 const AAXISvDataXInline: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'capabilities' | 'differentiators' | 'results'>('capabilities');
+  const [activeTab, setActiveTab] = useState<'capabilities' | 'differentiators'>('capabilities');
   // Local state for capabilities controls and modal
   const [capColumns, setCapColumns] = useState<number>(2);
   const [capSort, setCapSort] = useState<'aaxis' | 'datax' | 'alpha'>('aaxis');
@@ -623,14 +615,7 @@ const AAXISvDataXInline: React.FC = () => {
         datax: 'Generic enterprise approach',
         impact: '3-5x higher exit valuations'
       }
-    ] as Differentiator[],
-    
-    clientResults: [
-      { client: 'Guitar Center', metric: 'Integration Time', aaxis: '2 weeks', datax: '6 months', improvement: '92%' },
-      { client: 'QXO/Beacon', metric: 'Data Quality', aaxis: '99.9%', datax: '85%', improvement: '17%' },
-      { client: 'Zenni Optical', metric: 'Processing Speed', aaxis: 'Real-time', datax: '24hr batch', improvement: '∞' },
-      { client: 'Braskem', metric: 'TCO Reduction', aaxis: '60%', datax: '15%', improvement: '4x' }
-    ] as ClientResult[]
+    ] as Differentiator[]
   };
 
   const aaxisAdvantages: Advantage[] = [
@@ -693,10 +678,10 @@ const AAXISvDataXInline: React.FC = () => {
       {/* Tab Navigation */}
       <div className="max-w-7xl mx-auto px-8">
         <div className="flex gap-4 mb-8 border-b border-slate-800">
-          {['capabilities', 'differentiators', 'results'].map((tab) => (
+          {['capabilities', 'differentiators'].map((tab) => (
             <button
               key={tab}
-              onClick={() => setActiveTab(tab as 'capabilities' | 'differentiators' | 'results')}
+              onClick={() => setActiveTab(tab as 'capabilities' | 'differentiators')}
               className={`px-6 py-3 font-semibold capitalize transition-all ${
                 activeTab === tab 
                   ? 'text-blue-400 border-b-2 border-blue-400' 
@@ -791,65 +776,6 @@ const AAXISvDataXInline: React.FC = () => {
             })}
           </div>
         )}
-
-        {/* Client Results */}
-        {activeTab === 'results' && (
-          <div>
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold mb-2">Proven Client Outcomes</h2>
-              <p className="text-slate-400">Real results from AAXIS deployments vs traditional DataX implementations</p>
-            </div>
-            
-            <div className="grid gap-4">
-              {competitiveMatrix.clientResults.map((result, i) => (
-                <div key={i} className="bg-gradient-to-r from-slate-900/80 to-slate-800/80 backdrop-blur-xl rounded-xl p-6 border border-white/10 hover:border-blue-500/30 transition-all">
-                  <div className="grid grid-cols-5 gap-6 items-center">
-                    <div>
-                      <div className="text-xs text-slate-500 mb-1">CLIENT</div>
-                      <div className="font-bold text-lg">{result.client}</div>
-                    </div>
-                    
-                    <div>
-                      <div className="text-xs text-slate-500 mb-1">METRIC</div>
-                      <div className="font-semibold">{result.metric}</div>
-                    </div>
-                    
-                    <div>
-                      <div className="text-xs text-emerald-500 mb-1">AAXIS</div>
-                      <div className="text-xl font-bold text-emerald-400">{result.aaxis}</div>
-                    </div>
-                    
-                    <div>
-                      <div className="text-xs text-slate-500 mb-1">DATAX</div>
-                      <div className="text-xl font-bold text-slate-500">{result.datax}</div>
-                    </div>
-                    
-                    <div className="text-right">
-                      <div className="text-xs text-blue-500 mb-1">IMPROVEMENT</div>
-                      <div className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                        {result.improvement}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* ROI Calculator Teaser */}
-            <div className="mt-12 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-pink-600/20 rounded-2xl p-8 border border-purple-500/30">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-2xl font-bold mb-2">Calculate Your ROI</h3>
-                  <p className="text-slate-300">See how AAXIS can transform your data operations</p>
-                </div>
-                <button className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl font-semibold hover:shadow-xl transition-all flex items-center gap-2">
-                  Launch Calculator
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
 
   {/* Bottom CTA Section */}
@@ -864,7 +790,7 @@ const AAXISvDataXInline: React.FC = () => {
               Ready to Leave Legacy Integration Behind?
             </h2>
             <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-              Join Guitar Center, QXO, and Zenni Optical in the AI-powered data revolution. 
+              Join leading enterprises in the AI-powered data revolution. 
               Deploy in 2 weeks, not 6 months.
             </p>
             <div className="flex gap-4 justify-center">
